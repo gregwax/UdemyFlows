@@ -33,8 +33,11 @@
     <recordCreates>
         <name>Create_Lead_Record</name>
         <label>Create Lead Record</label>
-        <locationX>458</locationX>
-        <locationY>481</locationY>
+        <locationX>440</locationX>
+        <locationY>485</locationY>
+        <connector>
+            <targetReference>Lead_Success_Creation</targetReference>
+        </connector>
         <inputAssignments>
             <field>Company</field>
             <value>
@@ -86,6 +89,30 @@
             <helpText>&lt;p&gt;Please enter your company name&lt;/p&gt;</helpText>
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>true</isRequired>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <name>Lead_Success_Creation</name>
+        <label>Lead Success Creation</label>
+        <locationX>678</locationX>
+        <locationY>460</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <fields>
+            <name>LeadSuccessfullyCreated</name>
+            <fieldText>&lt;p&gt;&lt;a href=&quot;https://momentum-velocity-3831-dev-ed.scratch.lightning.force.com/lightning/r/Lead/{!Create_Lead_Record}/view&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;Lead Successfully Created&lt;/a&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
             <styleProperties>
                 <verticalAlignment>
                     <stringValue>top</stringValue>
