@@ -11,7 +11,7 @@
         <inputParameters>
             <name>SObjectRowId</name>
             <value>
-                <elementReference>Store_Registered_User</elementReference>
+                <elementReference>Store_Registered_User.Id</elementReference>
             </value>
         </inputParameters>
         <nameSegment>Registered_User__c.Thank_you_Email_Alert</nameSegment>
@@ -220,5 +220,5 @@
             <targetReference>RegisterUserDetail</targetReference>
         </connector>
     </start>
-    <status>Active</status>
+    <status>InvalidDraft</status>
 </Flow>
