@@ -1,5 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <actionCalls>
+        <name>Case_Close_Email</name>
+        <label>Case Close Email</label>
+        <locationX>1357</locationX>
+        <locationY>474</locationY>
+        <actionName>Case.Case_Close_Notification_Email</actionName>
+        <actionType>emailAlert</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>CaseIdVar</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>Case.Case_Close_Notification_Email</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
     <apiVersion>65.0</apiVersion>
     <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
     <customProperties>
@@ -8,6 +25,28 @@
             <stringValue>{&quot;location&quot;:&quot;top&quot;,&quot;type&quot;:&quot;simple&quot;}</stringValue>
         </value>
     </customProperties>
+    <decisions>
+        <name>Case_Closed</name>
+        <label>Case Closed?</label>
+        <locationX>966</locationX>
+        <locationY>490</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Case_Closed1</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Case_Status</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Closed</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Case_Close_Email</targetReference>
+            </connector>
+            <label>Case Closed</label>
+        </rules>
+    </decisions>
     <dynamicChoiceSets>
         <name>CaseStatus</name>
         <dataType>Picklist</dataType>
@@ -49,8 +88,8 @@
     <recordUpdates>
         <name>Update_Case_Record</name>
         <label>Update Case Record</label>
-        <locationX>398</locationX>
-        <locationY>398</locationY>
+        <locationX>768</locationX>
+        <locationY>352</locationY>
         <connector>
             <targetReference>Successful_Case_Update</targetReference>
         </connector>
@@ -85,8 +124,8 @@
     <screens>
         <name>Case_update_Details</name>
         <label>Case update Details</label>
-        <locationX>392</locationX>
-        <locationY>219</locationY>
+        <locationX>769</locationX>
+        <locationY>213</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -167,11 +206,14 @@
     <screens>
         <name>Successful_Case_Update</name>
         <label>Successful Case Update</label>
-        <locationX>661</locationX>
-        <locationY>373</locationY>
+        <locationX>768</locationX>
+        <locationY>489</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
+        <connector>
+            <targetReference>Case_Closed</targetReference>
+        </connector>
         <fields>
             <name>TextForCaseUpdate</name>
             <fieldText>&lt;p&gt;&lt;strong&gt;Congratulations, your case has been updated successfully.&lt;/strong&gt;&lt;/p&gt;</fieldText>

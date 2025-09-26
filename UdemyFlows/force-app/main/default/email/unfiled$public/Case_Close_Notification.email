@@ -1,0 +1,5 @@
+Dear {!Case.Contact},<br/>
+We have successfully closed your Case with number {!Case.CaseNumber}.  <br/>
+We hope we have addressed it in a timely manner.<br/>  Let us know if you need any help. <br/> Thank you and have a wonderful day.<br/>
+Thank you, <br/>
+Greg
