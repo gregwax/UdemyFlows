@@ -123,11 +123,14 @@
     <recordCreates>
         <name>Create_Account_Record</name>
         <label>Create Account Record</label>
-        <locationX>376</locationX>
-        <locationY>277</locationY>
+        <locationX>468</locationX>
+        <locationY>216</locationY>
         <connector>
             <targetReference>Assign_The_Account_Id</targetReference>
         </connector>
+        <faultConnector>
+            <targetReference>AccountErrorMessage</targetReference>
+        </faultConnector>
         <inputAssignments>
             <field>Name</field>
             <value>
@@ -189,6 +192,9 @@
         <connector>
             <targetReference>Assign_Contact_Id</targetReference>
         </connector>
+        <faultConnector>
+            <targetReference>ContactErrorMessage</targetReference>
+        </faultConnector>
         <inputAssignments>
             <field>AccountId</field>
             <value>
@@ -515,6 +521,54 @@
             <fieldType>DropdownBox</fieldType>
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>false</isRequired>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <name>AccountErrorMessage</name>
+        <label>AccountErrorMessage</label>
+        <locationX>668</locationX>
+        <locationY>207</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <fields>
+            <name>AccountFailMessage</name>
+            <fieldText>&lt;p&gt;&lt;strong&gt;&lt;span class=&quot;ql-cursor&quot;&gt;﻿&lt;/span&gt;An error occurred while creating an Account.&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;{!$Flow.FaultMessage}&lt;/strong&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <name>ContactErrorMessage</name>
+        <label>ContactErrorMessage</label>
+        <locationX>735</locationX>
+        <locationY>518</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <fields>
+            <name>ContactCreationError</name>
+            <fieldText>&lt;p&gt;An error occurred during the creation of the Contact record.  Please find additional details for the error here:&lt;/p&gt;&lt;p&gt;&lt;strong&gt;{!$Flow.FaultMessage}&lt;/strong&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
             <styleProperties>
                 <verticalAlignment>
                     <stringValue>top</stringValue>
